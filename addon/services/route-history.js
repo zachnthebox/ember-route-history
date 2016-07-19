@@ -18,7 +18,7 @@ export default Ember.Service.extend({
 	 * @property current
 	 * @type {String}
 	 */
-	current: '',
+	current: computed.alias('history.lastObject'),
 
 	/**
 	 * Previous route. If there is no previous route, returns null
@@ -80,7 +80,6 @@ export default Ember.Service.extend({
 	setCurrentRoute(route) {
 		const routeName = route.get('routeName');
 		if (routeName !== 'loading') {
-			this.set('current', routeName);
 			this.addRouteToHistory(routeName);
 		}
 	}
